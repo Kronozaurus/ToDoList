@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.mytodolist.TaskFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" >
+        <action
+            android:id="@+id/action_taskFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_taskFragment_to_displayTaskFragment"
+            app:destination="@id/displayTaskFragment" />
+        <argument
+            android:name="taskInList"
+            app:argType="com.example.mytodolist.data.ListItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.example.mytodolist.AddTaskFragment"
+        android:label="fragment_add_task"
+        tools:layout="@layout/fragment_add_task" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+        <argument
+            android:name="taskToEdit"
+            app:argType="com.example.mytodolist.data.TaskItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="edit"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayTaskFragment"
+        android:name="com.example.mytodolist.DisplayTaskFragment"
+        android:label="fragment_display_task"
+        tools:layout="@layout/fragment_display_task" >
+        <argument
+            android:name="task"
+            app:argType="com.example.mytodolist.data.TaskItem" />
+        <action
+            android:id="@+id/action_displayTaskFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_displayTaskFragment_to_taskFragment2"
+            app:destination="@id/taskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.mytodolist.ListFragment"
+        android:label="ListFragment"
+        tools:layout="@layout/fragment_lists_list">
+        <action
+            android:id="@+id/action_listFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_addListFragment"
+            app:destination="@id/addListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addListFragment"
+        android:name="com.example.mytodolist.AddListFragment"
+        android:label="AddListFragment"
+        tools:layout="@layout/fragment_add_list">
+        <argument
+            android:name="listToEdit"
+            app:argType="com.example.mytodolist.data.ListItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_addListFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+</navigation>
